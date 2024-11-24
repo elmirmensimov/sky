@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ haber.baslik }}</title>  <!-- Xəbər başlığı dinamik olaraq göstərilir -->
+    <style>
+        body {
+            font-family: Georgia, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ccc;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        /* Linklərin rəngi ilkin olaraq şəffaf və ya boz olacaq */
+        nav a {
+            text-decoration: none;
+            color: #ccc;  /* Rəngsiz və ya boz */
+            margin: 0 15px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        /* Hover zamanı alt xətt çıxır və rəngi mavi olur */
+        nav a:hover {
+            color: #000;  /* Mavi rəng */
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #000;   /* Alt xəttin rəngi */
+            left: 0;
+            bottom: -5px;  /* Xəttin yazıdan bir az aşağı olması */
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .article-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .article-header {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .article-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .article-header .date {
+            font-size: 0.9em;
+            color: #999;
+        }
+
+        .article-body {
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        .article-body p {
+            margin-bottom: 20px;
+        }
+
+        .article-image {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .article-image img {
+            max-width: 75%;  /* Konteynerin 75%-i qədər miqyasla */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Haber Sitesi</h1>
+        <nav>
+            <a href="/">Anasayfa</a>
+            <a href="{% url 'siyaset_sayfasi' %}">Siyasət</a>
+            <a href="#">Ekonomiya</a>
+            <a href="#">İdman</a>
+            <a href="#">Texnologiya</a>
+        </nav>
+    </header>
+
+    <div class="article-container">
+        <div class="article-header">
+            <h2>{{ haber.baslik }}</h2>
+            <div class="date">{{ haber.yayinlanma_tarihi }}</div>
+        </div>
+
+        <div class="article-body">
+            {% if haber.resim %}
+            <div class="article-image">
+                <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}">
+            </div>
+            {% endif %}
+
+            <p>{{ haber.icerik }}</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Haber Sitesi</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBC PRIME</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <!-- Yazı Tarzı ve Tema Ayarları -->
+    <style>
+        /* Genel Ayarlar */
+        body {
+            font-family: Georgia, "Times New Roman", Times, serif; /* Klasik gazete stili font */
+            background-color: #ffffff; /* Beyaz arka plan */
+            color: #333333; /* Metin rengi */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem; /* Başlık boyutu */
+            margin: 0;
+        }
+
+        header nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 1.2rem;
+            font-size: 1rem;
+        }
+
+        /* İçerik Alanı */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+        }
+
+        .main-news-item h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Grid Haber Alanları */
+        .grid-news-item {
+            background: #ffffff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .grid-news-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .grid-news-item h4 {
+            font-size: 1.2rem;
+            color: #222222;
+        }
+
+        /* Yan Menü İçerik Ayarları */
+        .side-news-item {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: #333333;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+  /* İdman Bölümü Genel Stil */
+.idman-section {
+    border-top: 2px solid #333;
+    padding-top: 20px;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Ana Haber */
+/* Ana Haber */
+.main-idman-haber {
+    display: flex;
+    justify-content: center; /* Yatayda ortalama */
+    align-items: center; /* Dikeyde ortalama */
+    background: #f8f9fa;
+    padding: 20px; /* İçerik etrafında daha fazla boşluk */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 300px; /* Ortalamayı sağlamak için minimum yükseklik */
+}
+
+.main-haber-content {
+    max-width: 60%; /* Metin genişliğini belirleyin */
+    margin-right: 15px; /* Resimle metin arasına boşluk ekle */
+}
+
+.main-haber-img {
+    width: 250px;
+    height: 200px; /* Orta boy bir resim yüksekliği */
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+
+.main-haber-content h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.main-haber-content p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.read-time {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* Yan Haberler */
+.side-idman-haber {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.small-haber-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.side-idman-haber h6 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.side-idman-haber p {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.side-idman-haber .read-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Texnologiya Bölümü Genel Stil */
+.texnologiya-section {
+    border-top: 2px solid #333;
+    padding-top: 20px;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+
+.texnologiya-section {
+    border-top: 2px solid #333;
+    padding-top: 20px;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Ana Makale */
+.side-article h2, .side-article h6 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.side-article p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.read-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Merkezdeki Büyük Resim ve Makale */
+.main-article {
+    text-align: center;
+}
+
+.main-technology-img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.main-article h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.main-article p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Sağdaki 6 Makaleler */
+.right-articles .side-article {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.right-articles .side-article h6 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.right-articles .side-article:last-child {
+    border-bottom: none;
+}
+
+/* Alt Kısımdaki Makaleler */
+.bottom-article h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.bottom-article p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Genel Ayarlar */
+.siyaset-section {
+    margin-bottom: 4rem;
+}
+
+.siyaset-section .section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    color: #333;
+}
+
+/* Soldaki Makaleler */
+.siyaset-section .side-article h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.siyaset-section .side-article p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.siyaset-section .side-article .read-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Merkezdeki Büyük Makale */
+.siyaset-section .main-article {
+    text-align: center;
+}
+
+.siyaset-section .main-article img.main-article-img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+}
+
+.siyaset-section .main-article h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+.siyaset-section .main-article p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.siyaset-section .main-article .read-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Sağdaki Kısa Makaleler */
+.siyaset-section .right-articles .side-article {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.siyaset-section .right-articles .side-article:last-child {
+    border-bottom: none;
+}
+
+.siyaset-section .right-articles .side-article h6 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.3rem;
+}
+
+.siyaset-section .right-articles .side-article .read-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+
+/* İqtisadiyyat Bölümü */
+.iqtisadiyyat-section {
+    margin-bottom: 4rem;
+}
+
+.iqtisadiyyat-section .section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    color: #333;
+}
+
+/* Ana Makale */
+.iqtisadiyyat-section .main-article {
+    background-color: #faf5e9;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.iqtisadiyyat-section .main-article h3 {
+    font-size: 1.3rem;
+    color: #222;
+    margin: 0.5rem 0;
+}
+
+.iqtisadiyyat-section .main-article p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.iqtisadiyyat-section .main-article .read-time {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.iqtisadiyyat-section .main-article-img {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+/* Kısa Makaleler */
+.iqtisadiyyat-section .side-articles .side-article h6 {
+    font-size: 1rem;
+    color: #333;
+    margin: 0.3rem 0;
+}
+
+.iqtisadiyyat-section .side-articles .side-article p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.iqtisadiyyat-section .side-articles .side-article .read-time {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.iqtisadiyyat-section .side-articles .side-article-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 0.75rem;
+}
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+<header class="bg-white text-dark text-center p-3" style="font-family: 'Times New Roman', serif; font-weight: bold; border-bottom: 2px solid #ccc;">
+    <div class="d-flex align-items-center justify-content-center">
+        <!-- Logo -->
+
+        <h1 style="font-size: 2.5rem; margin: 0;">NBCPlus</h1>
+    </div>
+</header>
+
+
+
+<div class="container mt-4">
+    <!-- Üst Menü -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <a href="{% url 'siyaset_sayfasi' %}">Siyasət</a>
+
+            <a href="{% url 'ekonomiya_sayfasi' %}">İqtisadiyyat</a> |
+            <a href="{% url 'idman_sayfasi' %}">İdman</a> |
+            <a href="{% url 'texnologiya_sayfasi' %}">Texnologiya</a>
+        </div>
+        <div class="d-flex">
+            <div class="mr-3 text-success">S&P 500 5,832.92 ▲0.16%</div>
+            <div class="mr-3 text-success">Nasdaq 18,712.75 ▲0.78%</div>
+            <div class="text-danger">FTSE 100 8,201.13 ▼0.22%</div>
+        </div>
+    </div>
+
+    <!-- Manşet ve Günün Öne Çıkanları Yan Yana -->
+    <div class="row">
+        <!-- Manşet Bölümü -->
+        <div class="col-md-8">
+            <h5 class="mb-3" style="color: #FF9900;">Manşet</h5>
+            {% if manset_haberler %}
+                {% for haber in manset_haberler %}
+                    <div class="card mb-3" style="border: 1px solid #ddd; border-radius: 8px;">
+                        {% if haber.resim %}
+                            <img src="{{ haber.resim.url }}" class="card-img-top" alt="{{ haber.baslik }}" style="width: %; height: auto; max-height: 350px; object-fit: cover; border-top-left-radius: 6px; border-top-right-radius: 8px;">
+                        {% else %}
+                            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Varsayılan Resim" style="width: 70%; height: auto; max-height: 200px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <span class="badge badge-secondary">{{ haber.kategori }}</span>
+                            <h5 class="card-title mt-2">
+                                <a href="{% url 'haber_detay' haber.pk %}" class="text-dark font-weight-bold">{{ haber.baslik }}</a>
+                            </h5>
+                            <p class="card-text">{{ haber.icerik|truncatewords:30 }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Manşet haber bulunamadı.</p>
+            {% endif %}
+        </div>
+
+        <!-- Günün Öne Çıkanları Bölümü -->
+        <div class="col-md-4">
+            <h5 class="mb-3">Günün Öne Çıkanları</h5>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        {% for haber in gunun_one_cikanlar %}
+                            <li class="d-flex align-items-center mb-2">
+                                {% if haber.resim %}
+                                    <img src="{{ haber.resim.url }}" class="mr-2" alt="Haber Resmi" style="width: 50px; height: 50px; object-fit: cover;">
+                                {% else %}
+                                    <img src="https://via.placeholder.com/50" class="mr-2" alt="Varsayılan Resim" style="width: 50px; height: 50px; object-fit: cover;">
+                                {% endif %}
+                                <a href="{% url 'haber_detay' haber.pk %}" class="text-dark">{{ haber.baslik }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+                  <div class="siyaset-section mb-4">
+    <h5 class="section-title"></h5>
+
+    <div class="row">
+        <!-- Solda İki Makale -->
+        <div class="col-md-4">
+            {% if siyaset_haberler|length > 0 %}
+                <div class="side-article mb-4">
+                    <a href="{% url 'haber_detay' siyaset_haberler.0.pk %}" class="text-dark font-weight-bold">
+                        <h2>{{ siyaset_haberler.0.baslik }}</h2>
+                    </a>
+                    <p>{{ siyaset_haberler.0.icerik|truncatewords:20 }}</p>
+                    <span class="read-time">3 MIN READ</span>
+                </div>
+            {% endif %}
+
+            {% if siyaset_haberler|length > 1 %}
+                <div class="side-article mb-4">
+                    <a href="{% url 'haber_detay' siyaset_haberler.1.pk %}" class="text-dark font-weight-bold">
+                        <h2>{{ siyaset_haberler.1.baslik }}</h2>
+                    </a>
+                    <p>{{ siyaset_haberler.1.icerik|truncatewords:20 }}</p>
+                    <span class="read-time">3 MIN READ</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Merkezdeki Büyük Resim ve Makale -->
+        <div class="col-md-4">
+            {% if siyaset_haberler|length > 2 %}
+                <div class="main-article mb-4">
+                    {% if siyaset_haberler.2.resim %}
+                        <img src="{{ siyaset_haberler.2.resim.url }}" alt="{{ siyaset_haberler.2.baslik }}" class="main-article-img">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300x200" alt="Varsayılan Resim" class="main-article-img">
+                    {% endif %}
+                    <a href="{% url 'haber_detay' siyaset_haberler.2.pk %}" class="text-dark font-weight-bold">
+                        <h2>{{ siyaset_haberler.2.baslik }}</h2>
+                    </a>
+                    <p>{{ siyaset_haberler.2.icerik|truncatewords:20 }}</p>
+                    <span class="read-time">3 MIN READ</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Sağdaki 6 Makale -->
+        <div class="col-md-4">
+            <div class="right-articles">
+                {% for haber in siyaset_haberler|slice:"3:9" %}
+                    <div class="side-article mb-3">
+                        <a href="{% url 'haber_detay' haber.pk %}" class="text-dark font-weight-bold">
+                            <h6>{{ haber.baslik }}</h6>
+                        </a>
+                        <span class="read-time">3 MIN READ</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="iqtisadiyyat-section mb-4">
+    <h5 class="section-title">İqtisadiyyat</h5>
+
+    <div class="row">
+        <!-- Solda Ana Makale -->
+        <div class="col-md-6">
+            {% if ekonomi_haberler|length > 0 %}
+                <div class="main-article mb-4 d-flex align-items-start">
+                    {% if ekonomi_haberler.0.resim %}
+                        <img src="{{ ekonomi_haberler.0.resim.url }}" alt="{{ ekonomi_haberler.0.baslik }}" class="main-article-img mr-3" style="width: 150px; height: auto; object-fit: cover;">
+                    {% else %}
+                        <img src="https://via.placeholder.com/150x150" alt="Varsayılan Resim" class="main-article-img mr-3">
+                    {% endif %}
+                    <div>
+                        <a href="{% url 'haber_detay' ekonomi_haberler.0.pk %}" class="text-dark font-weight-bold">
+                            <h3>{{ ekonomi_haberler.0.baslik }}</h3>
+                        </a>
+                        <p>{{ ekonomi_haberler.0.icerik|truncatewords:30 }}</p>
+                        <span class="read-time">3 MIN READ</span>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Sağda Ekonomik Kısa Makaleler -->
+        <div class="col-md-6">
+            <div class="side-articles">
+                {% for haber in ekonomi_haberler|slice:"1:6" %}
+                    <div class="side-article mb-3 d-flex align-items-start">
+                        {% if haber.resim %}
+                            <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}" class="side-article-img mr-3" style="width: 80px; height: 80px; object-fit: cover;">
+                        {% else %}
+                            <img src="https://via.placeholder.com/80x80" alt="Varsayılan Resim" class="side-article-img mr-3">
+                        {% endif %}
+                        <div>
+                            <a href="{% url 'haber_detay' haber.pk %}" class="text-dark font-weight-bold">
+                                <h6>{{ haber.baslik }}</h6>
+                            </a>
+                            <p class="text-muted mb-0">{{ haber.icerik|truncatewords:15 }}</p>
+                            <span class="read-time">3 MIN READ</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="texnologiya-section mb-4">
+    <h5 class="section-title">Texnologiya</h5>
+
+    <div class="row">
+        <!-- Solda İki Makale -->
+        <div class="col-md-4">
+            {% if teknoloji_haberler|length > 0 %}
+                <div class="side-article mb-4">
+                    <a href="{% url 'haber_detay' teknoloji_haberler.0.pk %}" class="text-dark font-weight-bold">
+                        <h2>{{ teknoloji_haberler.0.baslik }}</h2>
+                    </a>
+                    <p>{{ teknoloji_haberler.0.icerik|truncatewords:20 }}</p>
+                    <span class="read-time">3 MIN READ</span>
+                </div>
+            {% endif %}
+
+            {% if teknoloji_haberler|length > 1 %}
+                <div class="side-article mb-4">
+                    <a href="{% url 'haber_detay' teknoloji_haberler.1.pk %}" class="text-dark font-weight-bold">
+                        <h2>{{ teknoloji_haberler.1.baslik }}</h2>
+                    </a>
+                    <p>{{ teknoloji_haberler.1.icerik|truncatewords:20 }}</p>
+                    <span class="read-time">3 MIN READ</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Merkezdeki Büyük Resim ve Makale -->
+        <div class="col-md-4">
+            {% if teknoloji_haberler|length > 2 %}
+                <div class="main-article mb-4">
+                    {% if teknoloji_haberler.2.resim %}
+                        <img src="{{ teknoloji_haberler.2.resim.url }}" alt="{{ teknoloji_haberler.2.baslik }}" class="main-technology-img">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300x200" alt="Varsayılan Resim" class="main-technology-img">
+                    {% endif %}
+                    <a href="{% url 'haber_detay' teknoloji_haberler.2.pk %}" class="text-dark font-weight-bold">
+                        <h2>{{ teknoloji_haberler.2.baslik }}</h2>
+                    </a>
+                    <p>{{ teknoloji_haberler.2.icerik|truncatewords:20 }}</p>
+                    <span class="read-time">3 MIN READ</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Sağdaki 6 Makale -->
+        <div class="col-md-4">
+            <div class="right-articles">
+                {% for haber in teknoloji_haberler|slice:"3:9" %}
+                    <div class="side-article mb-3">
+                        <a href="{% url 'haber_detay' haber.pk %}" class="text-dark font-weight-bold">
+                            <h6>{{ haber.baslik }}</h6>
+                        </a>
+                        <span class="read-time">3 MIN READ</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="idman-section mb-4">
+    <h5 class="section-title">İdman</h5>
+    <div class="row">
+        <!-- Ana Haber (Solda yazı, sağda resim) -->
+        <div class="col-md-8">
+            {% if spor_haberler|length > 0 %}
+                <div class="main-idman-haber d-flex justify-content-between">
+                    <div class="main-haber-content">
+                        <h2><a href="{% url 'haber_detay' spor_haberler.0.pk %}" class="text-dark">{{ spor_haberler.0.baslik }}</a></h2>
+                        <p>{{ spor_haberler.0.icerik|truncatewords:20 }}</p>
+                        <span class="read-time">5 MIN READ</span>
+                    </div>
+                    <img src="{{ spor_haberler.0.resim.url }}" alt="{{ spor_haberler.0.baslik }}" class="main-haber-img">
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Yan Haberler (Solda yazı, sağda resim) -->
+        <div class="col-md-4">
+            {% for haber in spor_haberler|slice:"1:5" %}
+                <div class="side-idman-haber d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h6><a href="{% url 'haber_detay' haber.pk %}" class="text-dark">{{ haber.baslik }}</a></h6>
+                        <p class="text-muted small">{{ haber.icerik|truncatewords:10 }}</p>
+                        <span class="read-time">5 MIN READ</span>
+                    </div>
+                    <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}" class="small-haber-img ml-3">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+    <!-- Altbilgi -->
+    <footer class="bg-dark text-white text-center p-3 mt-4">
+        <p>&copy; 2024 Haber Listesi</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

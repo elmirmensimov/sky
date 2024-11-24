@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texnologiya</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Georgia', serif;
+        }
+        .header-title {
+            font-size: 4rem; /* Başlıq üçün böyük ölçü */
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 20px;
+            text-transform: uppercase; /* Hərfləri böyük edir */
+            color: #000; /* Qara rəng */
+            border-bottom: 2px solid #000; /* Alt xətt */
+            padding-bottom: 10px;
+        }
+        .menu-links {
+            margin-top: 10px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        .menu-links a {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 15px;
+            color: #000;
+            text-decoration: none;
+        }
+        .menu-links a:hover {
+            text-decoration: underline;
+        }
+        .market-data {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 10px;
+            font-family: 'Arial', sans-serif;
+        }
+        .market-data .text-success {
+            margin-right: 15px;
+        }
+        .market-data .text-danger {
+            margin-right: 15px;
+        }
+        .card {
+            transition: transform 0.3s ease;
+            border: none;
+            margin-bottom: 30px;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #343a40;
+        }
+        .card-body {
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #eaeaea;
+            border-top: none;
+        }
+        .card-title {
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .btn-primary {
+            background-color: #343a40;
+            border-color: #343a40;
+            font-size: 0.875rem;
+            padding: 10px 20px;
+        }
+        .btn-primary:hover {
+            background-color: #000;
+            border-color: #000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4">
+    <!-- Başlıq -->
+    <div class="header-title">
+        Texnologiya
+    </div>
+
+    <!-- Üst Menü -->
+    <div class="menu-links">
+        <a href="{% url 'siyaset_sayfasi' %}">Siyasət</a> |
+        <a href="{% url 'ekonomiya_sayfasi' %}">İqtisadiyyat</a> |
+        <a href="{% url 'idman_sayfasi' %}">İdman</a> |
+        <a href="{% url 'texnologiya_sayfasi' %}">Texnologiya</a>
+    </div>
+
+    <!-- Market Məlumatları -->
+    <div class="d-flex market-data">
+        <div class="mr-3 text-success">S&P 500 5,832.92 ▲0.16%</div>
+        <div class="mr-3 text-success">Nasdaq 18,712.75 ▲0.78%</div>
+        <div class="text-danger">FTSE 100 8,201.13 ▼0.22%</div>
+    </div>
+
+    <!-- Xəbərlər -->
+    <div class="row">
+        {% for haber in texnologiya_haberler %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                {% if haber.resim %}
+                <img src="{{ haber.resim.url }}" class="card-img-top" alt="{{ haber.baslik }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ haber.baslik }}</h5>
+                    <p class="card-text">{{ haber.icerik|truncatewords:30 }}</p>
+                    <a href="{% url 'haber_detay' haber.pk %}" class="btn btn-primary btn-block">Daha çox oxu</a>
+                </div>
+                {% else %}
+                <div class="no-image-card">
+                    <h5>{{ haber.baslik }}</h5>
+                    <p>{{ haber.icerik|truncatewords:30 }}</p>
+                    <a href="{% url 'haber_detay' haber.pk %}" class="btn btn-primary mt-3">Daha çox oxu</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <p>Bu kateqoriyada xəbər yoxdur.</p>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
